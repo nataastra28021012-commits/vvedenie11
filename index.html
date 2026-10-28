@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Этапы выверки территорий</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --green: #3CB46E;
+      --text: #182033;
+      --card-bg: #F5F8F7;
+      --border: #E4ECE8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: #FFFFFF;
+      color: var(--text);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(190px, 1fr));
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .step {
+      min-height: 230px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--green);
+      border-radius: 0 0 14px 14px;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      cursor: pointer;
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .step:hover,
+    .step:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(24, 32, 51, 0.12);
+      outline: none;
+    }
+
+    .step.active {
+      height: 460px;
+      overflow-y: auto;
+      background: var(--card-bg);
+      box-shadow: 0 8px 24px rgba(60, 180, 110, 0.18);
+    }
+
+    .step-number {
+      margin-bottom: 20px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .step-description {
+      display: grid;
+      grid-template-rows: 0fr;
+      margin-top: 0;
+      overflow: hidden;
+      transition: grid-template-rows 0.3s ease, margin-top 0.3s ease;
+    }
+
+    .step-description p {
+      min-height: 0;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .step.active .step-description {
+      grid-template-rows: 1fr;
+      margin-top: 14px;
+    }
+
+    .course-message {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(190px, 1fr));
+      gap: 12px;
+      max-width: 1200px;
+      max-height: 0;
+      margin: 0 auto;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: max-height 0.35s ease, margin-top 0.35s ease, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .course-message.visible {
+      max-height: 200px;
+      margin-top: 48px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .course-message-content {
+      grid-column: 2 / 5;
+    }
+
+    .course-message p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .course-message p + p {
+      margin-top: 16px;
+    }
+
+    @media (max-width: 1000px) {
+      .steps,
+      .course-message {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .course-message-content {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="steps" aria-label="Этапы выверки территорий">
+    <button class="step" type="button" aria-expanded="false">
+      <div class="step-number">Шаг 01</div>
+      <h2 class="step-title">Проверка территорий</h2>
+      <div class="step-description">
+        <p>Проверить, верно ли проект разделён на&nbsp;территории. При&nbsp;необходимости внести изменения в&nbsp;существующее территориальное деление.</p>
+      </div>
+    </button>
+
+    <button class="step" type="button" aria-expanded="false">
+      <div class="step-number">Шаг 02</div>
+      <h2 class="step-title">Планирование времени</h2>
+      <div class="step-description">
+        <p>Запланировать, сколько времени каждый сотрудник потратит на&nbsp;выверку, а&nbsp;сколько — на&nbsp;выполнение других задач в&nbsp;офисе, и&nbsp;расписать, какие именно это будут задачи.</p>
+      </div>
+    </button>
+
+    <button class="step" type="button" aria-expanded="false">
+      <div class="step-number">Шаг 03</div>
+      <h2 class="step-title">Назначение<br />задач</h2>
+      <div class="step-description">
+        <p>Выбрать территории для&nbsp;выверки. Назначить их&nbsp;на&nbsp;месяц и&nbsp;специалиста.</p>
+      </div>
+    </button>
+
+    <button class="step" type="button" aria-expanded="false">
+      <div class="step-number">Шаг 04</div>
+      <h2 class="step-title">Синхронизация данных</h2>
+      <div class="step-description">
+        <p>Синхронизировать данные, чтобы специалисты увидели назначенные территории на&nbsp;своих рабочих телефонах.</p>
+      </div>
+    </button>
+
+    <button class="step" type="button" aria-expanded="false">
+      <div class="step-number">Шаг 05</div>
+      <h2 class="step-title">Анализ результатов</h2>
+      <div class="step-description">
+        <p>Проанализировать результаты выверки.</p>
+      </div>
+    </button>
+  </section>
+
+  <div class="course-message" id="course-message" aria-live="polite" aria-hidden="true">
+    <div class="course-message-content">
+      <p>Переходи к изучению этого курса, чтобы подробно узнать, как планировать работу сотрудников и какие нюансы учитывать в процессе.</p>
+      <p>Приятного просмотра!</p>
+    </div>
+  </div>
+
+  <script>
+    const steps = document.querySelectorAll('.step');
+    const courseMessage = document.querySelector('#course-message');
+
+    let courseMessageShown = false;
+
+    const updateCourseMessage = () => {
+      const allStepsOpen = [...steps].every((step) => step.classList.contains('active'));
+
+      if (allStepsOpen && !courseMessageShown) {
+        courseMessageShown = true;
+        courseMessage.classList.add('visible');
+        courseMessage.setAttribute('aria-hidden', 'false');
+      }
+    };
+
+    steps.forEach((step) => {
+      step.addEventListener('click', () => {
+        const isActive = step.classList.toggle('active');
+        step.setAttribute('aria-expanded', String(isActive));
+        updateCourseMessage();
+      });
+    });
+  </script>
+</body>
+</html>
